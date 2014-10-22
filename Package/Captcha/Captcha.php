@@ -212,7 +212,33 @@ class Captcha
 
         // If user specified a reCaptcha theme, output it as one of the options
         if ($this->theme) {
-            $theme = '<script> var RecaptchaOptions = {theme: "' . $this->theme . '"};</script>';
+            $theme = '<script>var RecaptchaOptions = {theme: "' . $this->theme . '"};</script>';
+        } else {
+            $theme = '<script>var RecaptchaOptions = {theme : "custom", custom_theme_widget: "recaptcha_widget"};</script>
+<div id="recaptcha_widget" style="display:none" class="well">
+	<div class="image-parent">
+		<label class="control-label">reCAPTCHA</label>
+		<div class="controls">
+			<a id="recaptcha_image" class="thumbnail" style="box-sizing: content-box"></a>
+			<div class="recaptcha_only_if_incorrect_sol" style="color:red">Incorrect please try again</div>
+		</div>
+	</div>
+	<fieldset>
+		<label class="recaptcha_only_if_image control-label">Enter the words above:</label>
+		<label class="recaptcha_only_if_audio control-label">Enter the numbers you hear:</label>
+		<div class="controls">
+			<div class="input-group">
+				<input type="text" id="recaptcha_response_field" name="recaptcha_response_field" class="input-recaptcha form-control" />
+				<div class="input-group-btn" style="vertical-align: top">
+					<a class="btn btn-default" href="javascript:Recaptcha.reload()"><i class="glyphicon glyphicon-refresh"></i></a>
+					<a class="btn btn-default recaptcha_only_if_image" href="javascript:Recaptcha.switch_type(\'audio\')"><i title="Get an audio CAPTCHA" class="glyphicon glyphicon-headphones"></i></a>
+					<a class="btn btn-default recaptcha_only_if_audio" href="javascript:Recaptcha.switch_type(\'image\')"><i title="Get an image CAPTCHA" class="glyphicon glyphicon-picture"></i></a>
+					<a class="btn btn-default" href="javascript:Recaptcha.showhelp()"><i class="glyphicon glyphicon-question-sign"></i></a>
+				</div>
+			</div>
+		</div>
+	</fieldset>
+</div>';
         }
 
         return $theme . '<script type="text/javascript" src="' . self::SERVER . '/challenge?k=' . $this->getPublicKey() . $error . '"></script>
@@ -361,6 +387,8 @@ class Captcha
         }
 
         $this->theme = $theme;
+        
+        return $this;
     }
 }
 
