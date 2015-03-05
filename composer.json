@@ -3,13 +3,18 @@
     "type": "library",
     "description": "A properly coded PHP 5 reCaptcha class that will allow you to interact with Google's reCaptcha API.",
     "keywords": ["recaptcha", "api", "google", "captcha", "php"],
-    "homepage": "https://github.com/AlekseyKorzun/reCaptcha-PHP-5",
+    "homepage": "https://github.com/andrewgould/reCaptcha-PHP-5",
     "license": "BSD",
     "authors": [
         {
             "name": "Aleksey Korzun",
             "email": "al.ko@webfoundation.net",
             "homepage": "http://www.alekseykorzun.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Andrew Gould",
+            "email": "andrew.gould@parkstreetgroup.com.au",
             "role": "Developer"
         }
     ],
